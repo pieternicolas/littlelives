@@ -6,8 +6,6 @@ import { START_TIMES, TIMESLOTS_DAYS } from "../SettingsForm/form";
 const state = useStorage("schedule", {} as any);
 
 const today = dayjs();
-
-console.log(state.value);
 </script>
 
 <template>
