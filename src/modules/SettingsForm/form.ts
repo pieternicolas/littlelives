@@ -19,10 +19,12 @@ export const START_TIMES = Array.from(
   (_, i) => START + i
 );
 
-export const timeslotFormSchema = z.object({
-  enabled: z.boolean(),
-  startTimes: z.array(z.string()),
-});
+export const timeslotFormSchema = z
+  .object({
+    enabled: z.boolean().optional(),
+    startTimes: z.array(z.string()).optional(),
+  })
+  .optional();
 
 export const settingsFormSchema = z.object({
   visitDuration: z.coerce.number({
@@ -30,7 +32,7 @@ export const settingsFormSchema = z.object({
     invalid_type_error: "Visit duration is required.",
   }),
   numberOfBookingSlots: z.number().min(1).max(99),
-  allowVideoTourCall: z.boolean(),
+  allowVideoTourCall: z.boolean().optional(),
   timeslots: z.object({
     mon: timeslotFormSchema,
     tue: timeslotFormSchema,

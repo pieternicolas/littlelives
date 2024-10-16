@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
 
 import { settingsFormSchema, DURATION_LIMITS, TIMESLOTS_DAYS } from "./form.ts";
 
@@ -115,7 +116,7 @@ const resetAvailability = (day: (typeof TIMESLOTS_DAYS)[number]) => {
         </div>
       </div>
 
-      <button type="submit">afsda</button>
+      <Button type="submit">Submit</Button>
     </form>
   </div>
 </template>
