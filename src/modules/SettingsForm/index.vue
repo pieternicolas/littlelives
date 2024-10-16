@@ -28,11 +28,14 @@ import AvailabilityForm from "./AvailabilityForm.vue";
 
 defineProps();
 
-const state = useStorage("schedule", {});
+const state = useStorage("schedule", {} as any);
 
 const { handleSubmit, values, setFieldValue } = useForm({
   validationSchema: toTypedSchema(settingsFormSchema),
-  initialValues: state.value as any,
+  initialValues: {
+    ...state.value,
+    visitDuration: String(state.value?.visitDuration),
+  },
 });
 
 const onSubmit = handleSubmit((values) => {
@@ -46,7 +49,7 @@ const resetAvailability = (day: (typeof TIMESLOTS_DAYS)[number]) => {
 </script>
 
 <template>
-  <div class="w-full h-full flex p-12">
+  <div class="w-1/3 h-full flex p-12">
     <form @submit="onSubmit" class="flex flex-col gap-4">
       <FormField v-slot="{ componentField }" name="visitDuration">
         <FormItem>
