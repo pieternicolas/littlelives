@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { useFieldArray, useForm } from "vee-validate";
+import { useForm } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/zod";
+import { useStorage } from "@vueuse/core";
 
 import {
   FormControl,
@@ -27,12 +28,16 @@ import AvailabilityForm from "./AvailabilityForm.vue";
 
 defineProps();
 
+const state = useStorage("schedule", {});
+
 const { handleSubmit, values, setFieldValue } = useForm({
   validationSchema: toTypedSchema(settingsFormSchema),
+  initialValues: state.value as any,
 });
 
 const onSubmit = handleSubmit((values) => {
   console.log("Form submitted!", values);
+  state.value = values;
 });
 
 const resetAvailability = (day: (typeof TIMESLOTS_DAYS)[number]) => {

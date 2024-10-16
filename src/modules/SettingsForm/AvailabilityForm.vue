@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 
 import { START_TIMES, TIMESLOTS_DAYS } from "./form";
+import { CirclePlus, Trash2 } from "lucide-vue-next";
 
 const props = defineProps<{
   day: (typeof TIMESLOTS_DAYS)[number];
@@ -113,7 +114,7 @@ const { fields, replace, push, remove } = useFieldArray(
         "
       />
 
-      <span @click="push('7')">+</span>
+      <span @click="push('7')" class="cursor-pointer"><CirclePlus /></span>
 
       <span
         @click="
@@ -124,8 +125,9 @@ const { fields, replace, push, remove } = useFieldArray(
             }
           }
         "
-        >remove</span
-      >
+        class="cursor-pointer"
+        ><Trash2
+      /></span>
     </div>
   </div>
 
